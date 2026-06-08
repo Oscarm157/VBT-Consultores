@@ -21,7 +21,7 @@ sobrio (editorialEase). Reference lock: Sequel (primaria), Liron Moran + Metalab
 (detalles). Vara de calidad: BG Consulting.
 
 ## Datos reales (única fuente)
-- Tel: 664 488 9835 · WhatsApp: 664 409 8464 · Email: Rvila@vbtconsultores.com
+- Tel: 664 889 5835 · WhatsApp: 664 409 8464 · Email: Rvila@vbtconsultores.com
 - Dirección: Torela Corporativo, Blvd. Agua Caliente 9955, Piso 5, Tijuana
 - Horario: Lunes a viernes, 9:00 a 18:00
 - Tagline: "Estrategia, cumplimiento y crecimiento."
