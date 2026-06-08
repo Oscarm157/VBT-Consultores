@@ -7,10 +7,10 @@ import { Reveal } from "@/components/site/Reveal";
 import { SignalLine } from "@/components/site/SignalLine";
 import { PillButton } from "@/components/site/PillButton";
 
-const SLUGS = ["fiscal", "financiera", "empresarial"] as const;
-
 export function generateStaticParams() {
-  return locales.flatMap((lang) => SLUGS.map((slug) => ({ lang, slug })));
+  return locales.flatMap((lang) =>
+    getServices(lang).map((s) => ({ lang, slug: s.slug })),
+  );
 }
 
 export async function generateMetadata({

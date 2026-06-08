@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+import { editorialEase } from "@/lib/motion";
 
 export function Reveal({
   children,
@@ -25,36 +24,9 @@ export function Reveal({
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.8, delay, ease: EASE }}
+      transition={{ duration: 0.8, delay, ease: editorialEase }}
     >
       {children}
     </MotionTag>
-  );
-}
-
-export function RevealStagger({
-  children,
-  className = "",
-  step = 0.08,
-}: {
-  children: React.ReactNode[];
-  className?: string;
-  step?: number;
-}) {
-  const reduce = useReducedMotion();
-  return (
-    <div className={className}>
-      {children.map((child, i) => (
-        <motion.div
-          key={i}
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: i * step, ease: EASE }}
-        >
-          {child}
-        </motion.div>
-      ))}
-    </div>
   );
 }

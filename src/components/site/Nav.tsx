@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { editorialEase } from "@/lib/motion";
 import { Wordmark } from "./Wordmark";
 import { PillButton } from "./PillButton";
 import type { Locale } from "@/content/dictionaries";
@@ -68,17 +69,20 @@ export function Nav({
   const [menu, setMenu] = useState(false); // services dropdown
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Cierra menús al cambiar de ruta (reset en render, no en efecto).
+  const [prevPath, setPrevPath] = useState(pathname);
+  if (pathname !== prevPath) {
+    setPrevPath(pathname);
+    setOpen(false);
+    setMenu(false);
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-    setMenu(false);
-  }, [pathname]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -198,7 +202,7 @@ export function Nav({
             initial={{ opacity: 0, y: reduce ? 0 : -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: reduce ? 0 : -8 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.2, ease: editorialEase }}
             onMouseEnter={openMenu}
             className="absolute inset-x-0 top-full hidden border-t border-line bg-ink md:block"
           >
@@ -268,7 +272,7 @@ export function Nav({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.35, ease: editorialEase }}
             className="overflow-hidden border-t border-line bg-ink md:hidden"
           >
             <div className="flex flex-col gap-1 px-5 py-6">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { editorialEase } from "@/lib/motion";
 
 type Item = { q: string; a: string };
 
@@ -43,7 +44,7 @@ export function Accordion({ items }: { items: readonly Item[] }) {
                   initial={reduce ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.32, ease: editorialEase }}
                   className="overflow-hidden"
                 >
                   <p className="max-w-2xl pb-8 pl-9 text-[16px] leading-relaxed text-bone/85">

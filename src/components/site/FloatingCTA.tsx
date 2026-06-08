@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { editorialEase } from "@/lib/motion";
 
 /** Botón flotante de WhatsApp, aparece tras pasar el hero. */
 export function FloatingCTA({ href, label }: { href: string; label: string }) {
@@ -26,7 +27,7 @@ export function FloatingCTA({ href, label }: { href: string; label: string }) {
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.3, ease: editorialEase }}
           className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full border border-line bg-surface-2/90 px-4 py-3 text-sm text-chalk backdrop-blur-md transition-colors hover:bg-surface-3"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>

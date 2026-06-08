@@ -146,9 +146,9 @@ export const dictionaries = {
           { name: "Integridad", note: "Recomendamos lo que haríamos con nuestra propia empresa." },
           { name: "Confidencialidad", note: "La información de cada cliente se trata con reserva absoluta." },
           { name: "Profesionalismo", note: "Criterio técnico y trato formal en cada entrega." },
-          { name: "Innovación", note: "Métodos y herramientas actuales aplicados a tu operación." },
+          { name: "Innovación", note: "Seguimos los cambios normativos y de herramientas para que el trabajo sea vigente, no rutinario." },
           { name: "Responsabilidad", note: "Respondemos por el trabajo y por sus tiempos." },
-          { name: "Compromiso con resultados", note: "Medimos el avance por lo que cambia en tu negocio." },
+          { name: "Compromiso con resultados", note: "Definimos un alcance, entregamos en los plazos acordados y revisamos que el resultado sea accionable." },
         ],
       },
       cta: {
@@ -249,7 +249,6 @@ export const dictionaries = {
       lead: "Notas breves sobre cambios fiscales, finanzas y gestión para empresarios. En preparación.",
       sampleBadge: "Ejemplo",
       comingSoon: "Próximamente",
-      readLabel: "Leer",
       items: [
         {
           category: "Fiscal",
@@ -277,7 +276,6 @@ export const dictionaries = {
       lead: "Guías y formatos para ordenar lo fiscal y financiero de tu empresa. En preparación.",
       sampleBadge: "Ejemplo",
       comingSoon: "Próximamente",
-      download: "Descargar",
       items: [
         {
           type: "Guía PDF",
@@ -358,9 +356,9 @@ export const dictionaries = {
           { name: "Integrity", note: "We recommend what we would do with our own company." },
           { name: "Confidentiality", note: "Every client's information is handled with full discretion." },
           { name: "Professionalism", note: "Technical judgment and a formal manner in every deliverable." },
-          { name: "Innovation", note: "Current methods and tools applied to your operation." },
+          { name: "Innovation", note: "We track regulatory and methodological changes so the work stays current, not routine." },
           { name: "Responsibility", note: "We answer for the work and for its deadlines." },
-          { name: "Commitment to results", note: "We measure progress by what changes in your business." },
+          { name: "Commitment to results", note: "We define a scope, deliver on the agreed timeline and confirm the output is actionable." },
         ],
       },
       cta: {
@@ -461,7 +459,6 @@ export const dictionaries = {
       lead: "Short notes on tax changes, finance and management for business owners. In preparation.",
       sampleBadge: "Sample",
       comingSoon: "Coming soon",
-      readLabel: "Read",
       items: [
         {
           category: "Tax",
@@ -489,7 +486,6 @@ export const dictionaries = {
       lead: "Guides and templates to put your company's tax and finances in order. In preparation.",
       sampleBadge: "Sample",
       comingSoon: "Coming soon",
-      download: "Download",
       items: [
         {
           type: "PDF guide",
