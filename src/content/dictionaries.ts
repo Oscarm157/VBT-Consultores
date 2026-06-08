@@ -168,6 +168,55 @@ export const dictionaries = {
       cta: "Agendar consulta",
       ctaLead: "Cuéntanos en qué está tu empresa y vemos por dónde empezar.",
     },
+    about: {
+      hero: {
+        eyebrow: "Nosotros",
+        title: "No somos un despacho contable.",
+        lead: "VBT Consultores es una firma de consultoría fiscal, financiera y empresarial en Tijuana. Trabajamos con empresarios que ya están operando y quieren crecer con control.",
+      },
+      approach: {
+        eyebrow: "Cómo trabajamos",
+        title: "Tres frentes, un solo criterio.",
+        paragraphs: [
+          "La mayoría de las empresas tratan lo fiscal, lo financiero y lo administrativo por separado, con un proveedor distinto para cada cosa. En la práctica son el mismo problema visto desde tres ángulos.",
+          "Primero entendemos cómo está la empresa hoy. Luego corregimos lo que la expone y dejamos una estructura que sostiene una revisión y soporta el crecimiento.",
+          "No prometemos atajos. Lo que ofrecemos es criterio técnico, trato formal y respuestas con respaldo.",
+        ],
+      },
+      valuesEyebrow: "Principios",
+      audienceEyebrow: "Para quién",
+    },
+    faqPage: {
+      eyebrow: "Preguntas frecuentes",
+      title: "Lo que suelen preguntar.",
+      lead: "Si tu duda no está aquí, escríbenos y la resolvemos.",
+      items: [
+        {
+          q: "¿En qué se diferencian de un despacho contable?",
+          a: "Un despacho lleva la contabilidad y cumple obligaciones. Nosotros trabajamos sobre la estrategia: cómo reducir el riesgo fiscal, ordenar las finanzas y estructurar la empresa para que crezca con control.",
+        },
+        {
+          q: "¿Cómo empieza el trabajo con ustedes?",
+          a: "Con una consulta inicial. Revisamos en qué está tu empresa y proponemos por dónde empezar, con un alcance claro antes de comprometer nada.",
+        },
+        {
+          q: "¿Trabajan con empresas familiares?",
+          a: "Sí. Es uno de los casos donde más aportamos, sobre todo en gobierno corporativo, donde se mezclan la operación y la propiedad.",
+        },
+        {
+          q: "¿Atienden requerimientos del SAT que ya están en curso?",
+          a: "Sí. Acompañamos en requerimientos, revisiones y aclaraciones, con sustento técnico y dentro de los plazos que marca la autoridad.",
+        },
+        {
+          q: "¿Cómo manejan la información de la empresa?",
+          a: "Con reserva absoluta. La confidencialidad es una condición del trabajo, no un agregado.",
+        },
+        {
+          q: "¿Cuánto cuesta una consultoría?",
+          a: "Depende del alcance. Después de una primera conversación enviamos una propuesta con el detalle de lo que incluye.",
+        },
+      ],
+    },
     contact: contactEs,
     floatingCta: { whatsapp: "WhatsApp" },
     footer: {
@@ -251,6 +300,55 @@ export const dictionaries = {
       backToAll: "All services",
       cta: "Book a consultation",
       ctaLead: "Tell us where your company stands and we'll see where to start.",
+    },
+    about: {
+      hero: {
+        eyebrow: "About",
+        title: "We are not an accounting practice.",
+        lead: "VBT Consultores is a tax, financial and business advisory firm in Tijuana. We work with owners who are already operating and want to grow with control.",
+      },
+      approach: {
+        eyebrow: "How we work",
+        title: "Three fronts, one standard.",
+        paragraphs: [
+          "Most companies handle tax, finance and administration separately, with a different provider for each. In practice they are the same problem seen from three angles.",
+          "We start by understanding where the company stands today. Then we fix what exposes it and leave a structure that withstands an audit and supports growth.",
+          "We do not promise shortcuts. What we offer is technical judgment, a formal manner and answers with backing.",
+        ],
+      },
+      valuesEyebrow: "Principles",
+      audienceEyebrow: "Who we work with",
+    },
+    faqPage: {
+      eyebrow: "FAQ",
+      title: "What clients usually ask.",
+      lead: "If your question isn't here, write to us and we'll answer it.",
+      items: [
+        {
+          q: "How are you different from an accounting practice?",
+          a: "A practice keeps the books and meets obligations. We work on strategy: how to reduce tax risk, put finances in order and structure the company so it grows with control.",
+        },
+        {
+          q: "How does working with you start?",
+          a: "With an initial consultation. We review where your company stands and propose where to start, with a clear scope before committing to anything.",
+        },
+        {
+          q: "Do you work with family businesses?",
+          a: "Yes. It is one of the cases where we add the most, especially in corporate governance, where operation and ownership mix.",
+        },
+        {
+          q: "Do you handle SAT requirements already in progress?",
+          a: "Yes. We support requirements, reviews and clarifications, with technical backing and within the authority's deadlines.",
+        },
+        {
+          q: "How do you handle company information?",
+          a: "With full discretion. Confidentiality is a condition of the work, not an add-on.",
+        },
+        {
+          q: "How much does an engagement cost?",
+          a: "It depends on the scope. After a first conversation we send a proposal detailing what it includes.",
+        },
+      ],
     },
     contact: contactEn,
     floatingCta: { whatsapp: "WhatsApp" },
