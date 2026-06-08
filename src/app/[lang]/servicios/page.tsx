@@ -1,10 +1,22 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
 import { getServices } from "@/content/services-detail";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { PillButton } from "@/components/site/PillButton";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const sp = getDictionary(lang).servicesPage;
+  return { title: sp.eyebrow, description: sp.lead };
+}
 
 export default async function ServiciosPage({
   params,
@@ -20,7 +32,7 @@ export default async function ServiciosPage({
   return (
     <>
       <section className="mx-auto max-w-[1280px] px-5 pt-40 pb-8 sm:px-8 sm:pt-48">
-        <SectionHeading eyebrow={sp.eyebrow} title={sp.title} lead={sp.lead} />
+        <SectionHeading level="h1" eyebrow={sp.eyebrow} title={sp.title} lead={sp.lead} />
       </section>
 
       <section className="mx-auto max-w-[1280px] px-5 sm:px-8">

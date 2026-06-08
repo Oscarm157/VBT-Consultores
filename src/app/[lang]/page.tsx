@@ -1,10 +1,29 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { SignalLine } from "@/components/site/SignalLine";
 import { PillButton } from "@/components/site/PillButton";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const d = getDictionary(lang);
+  const title =
+    lang === "es"
+      ? "VBT Consultores · Consultoría fiscal, financiera y empresarial en Tijuana"
+      : "VBT Consultores · Tax, financial and business advisory in Tijuana";
+  return {
+    title: { absolute: title },
+    description: d.home.hero.lead,
+  };
+}
 
 export default async function HomePage({
   params,

@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Accordion } from "@/components/site/Accordion";
 import { PillButton } from "@/components/site/PillButton";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const f = getDictionary(lang).faqPage;
+  return { title: f.eyebrow, description: f.lead };
+}
 
 export default async function FaqPage({
   params,
@@ -18,7 +30,7 @@ export default async function FaqPage({
   return (
     <>
       <section className="mx-auto max-w-[1280px] px-5 pt-40 pb-12 sm:px-8 sm:pt-48">
-        <SectionHeading eyebrow={f.eyebrow} title={f.title} lead={f.lead} />
+        <SectionHeading level="h1" eyebrow={f.eyebrow} title={f.title} lead={f.lead} />
       </section>
 
       <section className="mx-auto max-w-3xl px-5 pb-8 sm:px-8">

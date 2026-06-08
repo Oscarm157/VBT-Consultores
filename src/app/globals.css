@@ -50,6 +50,32 @@ html {
   color: var(--color-ink);
 }
 
+/* Foco visible accesible (solo teclado), coherente con el sistema */
+:focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Skip-link: oculto hasta recibir foco */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  margin: 12px;
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-size: 13px;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 /* Profundidad de cards: borde hairline + inset sutil, sin sombra pesada */
 .card-elev {
   box-shadow:

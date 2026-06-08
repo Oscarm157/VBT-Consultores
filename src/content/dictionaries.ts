@@ -107,6 +107,7 @@ export const dictionaries = {
         "Fiscal, financiero y empresarial bajo una sola firma de consultoría.",
     },
     langSwitch: { to: "EN", aria: "Switch to English" },
+    skipToContent: "Saltar al contenido",
     home: {
       hero: {
         eyebrow: "Consultoría · Tijuana, B.C.",
@@ -318,6 +319,7 @@ export const dictionaries = {
       megaLead: "Tax, finance and business under a single advisory firm.",
     },
     langSwitch: { to: "ES", aria: "Cambiar a español" },
+    skipToContent: "Skip to content",
     home: {
       hero: {
         eyebrow: "Advisory · Tijuana, B.C.",

@@ -48,6 +48,9 @@ export default async function LangLayout({
   return (
     <>
       <LangSetter lang={lang} />
+      <a href="#main" className="skip-link">
+        {dict.skipToContent}
+      </a>
       <div className="grain" aria-hidden />
       <Nav
         lang={lang}
@@ -56,7 +59,7 @@ export default async function LangLayout({
         services={dict.services.items}
         servicesCta={dict.services.cta}
       />
-      <main>{children}</main>
+      <main id="main">{children}</main>
       <Footer lang={lang} dict={dict} />
       <FloatingCTA href={dict.contact.whatsappHref} label={dict.floatingCta.whatsapp} />
     </>

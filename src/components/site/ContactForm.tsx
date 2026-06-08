@@ -123,9 +123,9 @@ export function ContactForm({
         <textarea id="message" name="message" rows={5} required className={`${field} resize-none`} />
       </div>
 
-      {status === "error" && (
-        <p className="text-[14px] text-bone">{dict.error}</p>
-      )}
+      <p aria-live="polite" className={`text-[14px] text-bone ${status === "error" ? "" : "sr-only"}`}>
+        {status === "error" ? dict.error : ""}
+      </p>
 
       <SubmitPill type="submit" variant="primary" arrow disabled={status === "sending"}>
         {status === "sending" ? dict.sending : dict.submit}

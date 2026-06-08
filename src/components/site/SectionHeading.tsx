@@ -9,6 +9,7 @@ export function SectionHeading({
   align = "left",
   tone = "dark",
   rule = true,
+  level = "h2",
   className = "",
 }: {
   eyebrow?: string;
@@ -18,11 +19,13 @@ export function SectionHeading({
   align?: "left" | "center";
   tone?: "dark" | "light";
   rule?: boolean;
+  level?: "h1" | "h2";
   className?: string;
 }) {
   const alignment =
     align === "center" ? "items-center text-center mx-auto" : "items-start text-left";
   const light = tone === "light";
+  const Title = level;
   return (
     <Reveal className={`flex max-w-3xl flex-col ${alignment} ${className}`}>
       {eyebrow && (
@@ -34,11 +37,11 @@ export function SectionHeading({
           {eyebrow}
         </span>
       )}
-      <h2
+      <Title
         className={`font-serif text-[clamp(2.1rem,5vw,3.8rem)] font-normal leading-[1.04] tracking-[-0.02em] ${light ? "text-ink" : "text-chalk"}`}
       >
         {title}
-      </h2>
+      </Title>
       {lead && (
         <p
           className={`mt-6 max-w-xl text-[17px] leading-relaxed ${light ? "text-ink/65" : "text-bone/90"}`}

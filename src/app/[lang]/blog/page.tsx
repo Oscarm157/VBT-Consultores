@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const b = getDictionary(lang).blogPage;
+  return { title: b.eyebrow, description: b.lead };
+}
 
 export default async function BlogPage({
   params,
@@ -14,7 +26,7 @@ export default async function BlogPage({
 
   return (
     <section className="mx-auto max-w-[1280px] px-5 pt-40 pb-28 sm:px-8 sm:pt-48 lg:pb-36">
-      <SectionHeading eyebrow={b.eyebrow} title={b.title} lead={b.lead} />
+      <SectionHeading level="h1" eyebrow={b.eyebrow} title={b.title} lead={b.lead} />
 
       <div className="mt-16 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
         {b.items.map((item, i) => (

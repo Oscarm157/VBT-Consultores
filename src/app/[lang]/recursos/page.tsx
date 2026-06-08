@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const r = getDictionary(lang).resourcesPage;
+  return { title: r.eyebrow, description: r.lead };
+}
 
 export default async function RecursosPage({
   params,
@@ -14,7 +26,7 @@ export default async function RecursosPage({
 
   return (
     <section className="mx-auto max-w-[1280px] px-5 pt-40 pb-28 sm:px-8 sm:pt-48 lg:pb-36">
-      <SectionHeading eyebrow={r.eyebrow} title={r.title} lead={r.lead} />
+      <SectionHeading level="h1" eyebrow={r.eyebrow} title={r.title} lead={r.lead} />
 
       <ul className="mt-16 border-t border-line">
         {r.items.map((item, i) => (

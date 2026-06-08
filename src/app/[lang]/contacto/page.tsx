@@ -1,8 +1,20 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
 import { Reveal } from "@/components/site/Reveal";
 import { SignalLine } from "@/components/site/SignalLine";
 import { ContactForm } from "@/components/site/ContactForm";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const cp = getDictionary(lang).contactPage;
+  return { title: cp.eyebrow, description: cp.lead };
+}
 
 export default async function ContactoPage({
   params,

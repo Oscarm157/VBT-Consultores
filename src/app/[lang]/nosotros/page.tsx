@@ -1,9 +1,21 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { SignalLine } from "@/components/site/SignalLine";
 import { PillButton } from "@/components/site/PillButton";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const a = getDictionary(lang).about;
+  return { title: a.hero.eyebrow, description: a.hero.lead };
+}
 
 export default async function NosotrosPage({
   params,
