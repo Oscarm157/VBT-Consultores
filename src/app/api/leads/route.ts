@@ -1,10 +1,51 @@
 import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
+import { leads } from "@/lib/schema";
 
-/**
- * Stub de captura de leads (M6). Valida lo mínimo y responde ok.
- * M7 lo reemplaza: inserta en Neon (Drizzle) y notifica por Resend a
- * Rvila@vbtconsultores.com. No persiste todavía.
- */
+const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+
+/** Notifica un lead nuevo por email (solo si hay RESEND_API_KEY configurada). */
+async function notify(lead: {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  service: string;
+  message: string;
+  locale: string;
+}) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return;
+  const lines = [
+    `Nombre: ${lead.name}`,
+    `Correo: ${lead.email}`,
+    lead.phone && `Teléfono: ${lead.phone}`,
+    lead.company && `Empresa: ${lead.company}`,
+    lead.service && `Servicio: ${lead.service}`,
+    `Idioma: ${lead.locale}`,
+    "",
+    lead.message,
+  ].filter(Boolean);
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "VBT Consultores <onboarding@resend.dev>",
+        to: ["Rvila@vbtconsultores.com"],
+        reply_to: lead.email,
+        subject: `Nuevo lead · ${lead.name}`,
+        text: lines.join("\n"),
+      }),
+    });
+  } catch {
+    // El email es best-effort: si falla, el lead ya quedó guardado en la DB.
+  }
+}
+
 export async function POST(req: Request) {
   let body: Record<string, unknown>;
   try {
@@ -13,12 +54,30 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "invalid_json" }, { status: 400 });
   }
 
-  const name = typeof body.name === "string" ? body.name.trim() : "";
-  const email = typeof body.email === "string" ? body.email.trim() : "";
+  const name = str(body.name);
+  const email = str(body.email);
   if (!name || !email) {
     return NextResponse.json({ error: "missing_fields" }, { status: 400 });
   }
 
-  // TODO (M7): persistir en DB + enviar email de notificación.
+  const lead = {
+    name,
+    email,
+    phone: str(body.phone),
+    company: str(body.company),
+    service: str(body.service),
+    message: str(body.message),
+    locale: str(body.locale) === "en" ? "en" : "es",
+    source: str(body.source) || "form",
+    sourceUrl: str(body.sourceUrl),
+  };
+
+  try {
+    await db.insert(leads).values(lead);
+  } catch {
+    return NextResponse.json({ error: "server_error" }, { status: 500 });
+  }
+
+  await notify(lead);
   return NextResponse.json({ ok: true });
 }
