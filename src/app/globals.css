@@ -1,15 +1,113 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #000000;
-  --color-chalk: #ffffff;
+  /* ===== VBT Consultores — editorial oscuro achromático (ref: Sequel) ===== */
+  /* Profundidad por color-step, no por sombra. Negro puro como canvas. */
+  --color-ink: #000000; /* canvas base, negro puro */
+  --color-surface-1: #0b0b0c; /* panel elevado */
+  --color-surface-2: #151517; /* cards */
+  --color-surface-3: #202023; /* interactivo / hover */
+  --color-line: #272727; /* borde hairline */
+
+  /* Superficies claras (interludios editoriales que cortan el dark) */
+  --color-paper: #f5f5f0; /* off-white Sequel */
+  --color-paper-2: #e9e9e3;
+
+  /* Texto sobre dark */
+  --color-chalk: #ffffff; /* primario, blanco puro */
+  --color-bone: #cfcfc9; /* secundario, blanco cálido */
+  --color-smoke: #9a9a93; /* labels atenuados */
+  --color-ash: #6c6c66; /* micro-labels tenues */
+
+  /* "Acento" achromático: el off-white de Sequel hace de señal sobre negro.
+     Sin color de marca: la jerarquía es por contraste y tipografía. */
+  --color-cream: #f5f5f0; /* fills de CTA */
+  --color-accent: #f5f5f0; /* señal/eyebrow sobre dark (off-white) */
+  --color-accent-dim: #e0e0d8; /* hover de fills */
+  --color-accent-ink: #1a1a18; /* eyebrow sobre superficies claras */
+  --color-on-accent: #000000; /* texto sobre fills cream */
+
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-chalk);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: var(--color-ink);
-  color: var(--color-chalk);
+::selection {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+/* Profundidad de cards: borde hairline + inset sutil, sin sombra pesada */
+.card-elev {
+  box-shadow:
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.4) 0px 12px 30px -18px;
+}
+
+/* Campo de grid editorial muy tenue */
+.grid-field {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Desvanece el grid hacia los bordes para que no se sienta de tabla */
+.grid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 38%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 38%, #000 0%, transparent 78%);
+}
+
+/* La señal (off-white) brilla sutil sobre el negro */
+.signal-glow {
+  box-shadow: 0 0 20px -4px rgba(245, 245, 240, 0.45);
+}
+.signal-text-glow {
+  text-shadow: 0 0 18px rgba(245, 245, 240, 0.25);
+}
+
+/* Panel de consola: borde hairline + highlight superior (depth por luz, no sombra) */
+.console-panel {
+  box-shadow:
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset,
+    rgba(255, 255, 255, 0.06) 0px 1px 0px 0px inset;
+}
+
+/* Disuelve el borde inferior de un panel-media en el canvas */
+.panel-dissolve {
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+}
+
+/* Líneas verticales finas: motivo del logo (marco de hairlines) */
+.frame-lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-position: left top, right top;
+  background-size: 1px 100%, 1px 100%;
+  background-repeat: no-repeat;
+}
+
+/* Grano sutil fijo, no afecta scroll perf */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
