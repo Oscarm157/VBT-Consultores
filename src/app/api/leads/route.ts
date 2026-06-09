@@ -60,12 +60,23 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "missing_fields" }, { status: 400 });
   }
 
+  const isBot = str(body.source) === "bot";
+
   const company = str(body.company);
   const service = str(body.service);
-  const qualification =
-    company || service
-      ? { ...(company ? { company } : {}), ...(service ? { service } : {}) }
-      : null;
+
+  // El chatbot manda qualification ya estructurado; el formulario manda empresa/servicio.
+  let qualification: Record<string, string> | null = null;
+  if (body.qualification && typeof body.qualification === "object") {
+    qualification = body.qualification as Record<string, string>;
+  } else {
+    qualification =
+      company || service
+        ? { ...(company ? { company } : {}), ...(service ? { service } : {}) }
+        : null;
+  }
+
+  const transcript = Array.isArray(body.messages) ? body.messages : null;
 
   try {
     await db.insert(leads).values({
@@ -74,8 +85,9 @@ export async function POST(req: Request) {
       phone: str(body.phone) || null,
       message: str(body.message) || null,
       qualification,
+      transcript,
       locale: str(body.locale) === "en" ? "en" : "es",
-      source: str(body.source) === "bot" ? "bot" : "form",
+      source: isBot ? "bot" : "form",
       sourceUrl: str(body.sourceUrl) || null,
     });
   } catch {

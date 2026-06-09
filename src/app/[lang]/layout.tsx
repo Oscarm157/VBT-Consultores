@@ -4,6 +4,7 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { LangSetter } from "@/components/site/LangSetter";
 import { FloatingCTA } from "@/components/site/FloatingCTA";
+import { ChatWidget } from "@/components/site/ChatWidget";
 import { getDictionary, isLocale, locales } from "@/content/dictionaries";
 
 export const dynamicParams = false;
@@ -62,6 +63,7 @@ export default async function LangLayout({
       <main id="main">{children}</main>
       <Footer lang={lang} dict={dict} />
       <FloatingCTA href={dict.contact.whatsappHref} label={dict.floatingCta.whatsapp} />
+      <ChatWidget />
     </>
   );
 }
