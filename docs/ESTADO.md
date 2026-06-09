@@ -44,13 +44,19 @@ npm run dev      # http://localhost:3000  (redirige a /es)
 
 ## Estado de milestones
 - **M7** datos: HECHO. Leads del formulario persisten en Neon.
+- **M8** chatbot concierge: HECHO y en producción. Claude (sonnet-4-6), persona VBT,
+  califica por frente/sector/urgencia, guarda el lead en el CRM con transcript
+  (`source: bot`). `ANTHROPIC_API_KEY` configurada en Vercel.
 - **M9** CRM: HECHO y en producción. Base estandarizada portada de BG (← Prime Advisor),
   genérica y rebrandeada a VBT, en `/admin`. SIN blog admin (esa unificación va en la
   terminal de BG). Si esa unificación será la fuente única del CRM, alinear para no
   mantener dos versiones.
-- **M8** chatbot concierge: pendiente, falta `ANTHROPIC_API_KEY`.
-- Email de leads: pendiente `RESEND_API_KEY` (+ verificar dominio para el remitente).
+
+## Opcionales pendientes (no del brief)
+- Email de leads: `RESEND_API_KEY` (+ verificar dominio para el remitente).
 - Archivos en leads (Vercel Blob): código presente, dormido hasta `BLOB_READ_WRITE_TOKEN`.
+- Logo limpio (hoy wordmark serif de placeholder).
+- Dominio `vbtconsultores.com` (hoy en `vbt-consultores.vercel.app`).
 
 ## Conocido / menor
 - `src/app/layout.tsx` usa `<html lang="es">` fijo; `LangSetter` corrige el idioma en
