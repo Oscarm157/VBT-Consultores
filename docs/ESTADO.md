@@ -1,6 +1,16 @@
 # Estado del proyecto · VBT Consultores
 
-Actualizado: 2026-06-08
+Actualizado: 2026-06-09
+
+## EN PRODUCCIÓN
+- Sitio: **https://vbt-consultores.vercel.app**
+- CRM: **https://vbt-consultores.vercel.app/admin/login**
+  - Admin inicial: `admin@vbtconsultores.com` (contraseña temporal en `.env.local`
+    como `CRM_ADMIN_PASSWORD`; cambiarla en Perfil al entrar).
+- Vercel: proyecto `vbt-consultores` en scope `oscars-projects157` (token
+  `/root/.vercel-new-token`). Env vars en producción: DATABASE_URL, CRM_SECRET,
+  CRM_ADMIN_EMAIL, CRM_ADMIN_PASSWORD. Deploy: `vercel --prod --token <token>`.
+- DB: Neon (DATABASE_URL en `.env.local`). Tablas CRM creadas vía `npm run db:push`.
 
 ## Hecho (sitio marketing completo + hardening)
 Sitio editorial oscuro bilingüe (ES default, EN), Next.js 16 + Tailwind v4 + Motion.
@@ -32,10 +42,15 @@ npm run dev      # http://localhost:3000  (redirige a /es)
 - **Definición de campos del CRM** (negocio distinto a Prime Advisor).
 - **Contenido real** de Blog y Recursos.
 
-## En hold (no tocar desde aquí)
-- **M8** chatbot concierge (falta `ANTHROPIC_API_KEY`), **M9** CRM: el CRM, el blog real
-  y la unificación de datos se están trabajando en la terminal de BG. No duplicar aquí.
-- **M7** capa de datos: HECHO. Leads del formulario persisten en Neon (tabla `leads`).
+## Estado de milestones
+- **M7** datos: HECHO. Leads del formulario persisten en Neon.
+- **M9** CRM: HECHO y en producción. Base estandarizada portada de BG (← Prime Advisor),
+  genérica y rebrandeada a VBT, en `/admin`. SIN blog admin (esa unificación va en la
+  terminal de BG). Si esa unificación será la fuente única del CRM, alinear para no
+  mantener dos versiones.
+- **M8** chatbot concierge: pendiente, falta `ANTHROPIC_API_KEY`.
+- Email de leads: pendiente `RESEND_API_KEY` (+ verificar dominio para el remitente).
+- Archivos en leads (Vercel Blob): código presente, dormido hasta `BLOB_READ_WRITE_TOKEN`.
 
 ## Conocido / menor
 - `src/app/layout.tsx` usa `<html lang="es">` fijo; `LangSetter` corrige el idioma en
