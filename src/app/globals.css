@@ -137,3 +137,216 @@ html {
   opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* ============================================================
+   Admin (CRM) — consola oscura VBT, acento crema.
+   Portado del CRM estándar (BG ← Prime Advisor), retematizado a VBT.
+   Todo bajo .crm-root para no filtrar al sitio público.
+   ============================================================ */
+.crm-root {
+  --crm-bg: #08080a;
+  --crm-surface: #111113;
+  --crm-surface-2: #1a1a1d;
+  --crm-ink: #ffffff;
+  --crm-ink-soft: #cfcfc9;
+  --crm-ink-mute: #8a8a84;
+  --crm-line: #262628;
+  --crm-line-strong: #36363c;
+  --crm-wine: #f5f5f0;
+  --crm-wine-soft: #e2e2da;
+  --crm-wine-tint: rgba(245, 245, 240, 0.09);
+  --crm-wine-ring: rgba(245, 245, 240, 0.26);
+  --crm-on-accent: #000000;
+
+  background: var(--crm-bg);
+  color: var(--crm-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.crm-card {
+  background: var(--crm-surface);
+  border: 1px solid var(--crm-line);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+.crm-card-flat {
+  background: var(--crm-surface);
+  border: 1px solid var(--crm-line);
+  border-radius: 10px;
+}
+.crm-hairline { height: 1px; background: var(--crm-line); border: 0; }
+.crm-rule { border-color: var(--crm-line); }
+
+.crm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 36px;
+  padding: 0 0.85rem;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    transform 0.08s ease, box-shadow 0.15s ease;
+}
+.crm-btn:active { transform: translateY(0.5px); }
+.crm-btn:disabled { opacity: 0.5; pointer-events: none; }
+
+.crm-btn-primary {
+  background: var(--crm-wine);
+  color: var(--crm-on-accent);
+  border: 1px solid var(--crm-wine);
+  font-weight: 600;
+}
+.crm-btn-primary:hover { background: var(--crm-wine-soft); border-color: var(--crm-wine-soft); }
+
+.crm-btn-secondary {
+  background: var(--crm-surface);
+  color: var(--crm-ink);
+  border: 1px solid var(--crm-line-strong);
+}
+.crm-btn-secondary:hover { background: var(--crm-surface-2); border-color: var(--crm-ink-mute); }
+
+.crm-btn-ghost {
+  background: transparent;
+  color: var(--crm-ink-soft);
+  border: 1px solid transparent;
+}
+.crm-btn-ghost:hover { background: var(--crm-wine-tint); color: var(--crm-ink); }
+
+.crm-btn-sm { height: 30px; padding: 0 0.65rem; font-size: 12.5px; border-radius: 7px; }
+
+.crm-input,
+.crm-select,
+.crm-textarea {
+  width: 100%;
+  background: var(--crm-surface);
+  border: 1px solid var(--crm-line-strong);
+  border-radius: 8px;
+  padding: 0 0.7rem;
+  height: 36px;
+  font-size: 14px;
+  color: var(--crm-ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.crm-textarea { height: auto; padding: 0.55rem 0.7rem; line-height: 1.5; }
+.crm-input::placeholder,
+.crm-textarea::placeholder { color: var(--crm-ink-mute); }
+.crm-select option { background: var(--crm-surface); color: var(--crm-ink); }
+.crm-input:focus,
+.crm-select:focus,
+.crm-textarea:focus {
+  border-color: var(--crm-wine-soft);
+  box-shadow: 0 0 0 3px var(--crm-wine-ring);
+}
+
+.crm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.12rem 0.5rem;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  border: 1px solid var(--crm-line-strong);
+  background: var(--crm-surface-2);
+  color: var(--crm-ink-soft);
+}
+.crm-badge-wine {
+  border-color: transparent;
+  background: var(--crm-wine-tint);
+  color: var(--crm-ink);
+}
+
+.crm-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 32px;
+  padding: 0 0.7rem;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--crm-ink-soft);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.crm-nav-link:hover { background: rgba(255, 255, 255, 0.05); color: var(--crm-ink); }
+.crm-nav-link[data-active="true"] {
+  background: var(--crm-wine-tint);
+  color: var(--crm-ink);
+}
+
+.crm-table { width: 100%; text-align: left; border-collapse: collapse; }
+.crm-th {
+  padding: 0.6rem 1rem;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--crm-ink-mute);
+  white-space: nowrap;
+}
+.crm-td { padding: 0.75rem 1rem; vertical-align: middle; }
+.crm-thead { background: var(--crm-wine-tint); }
+.crm-thead .crm-th { color: var(--crm-ink); }
+.crm-row { background: var(--crm-surface); transition: background-color 0.14s ease; }
+.crm-row:hover { background: var(--crm-surface-2); }
+
+.crm-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--crm-line);
+  background: var(--crm-surface);
+  padding: 0.34rem 0.75rem;
+  font-size: 13px;
+  color: var(--crm-ink-soft);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.crm-tab:hover { border-color: var(--crm-line-strong); color: var(--crm-ink); }
+.crm-tab[data-active="true"] {
+  border-color: var(--crm-wine);
+  background: var(--crm-wine);
+  color: var(--crm-on-accent);
+  font-weight: 600;
+}
+
+.crm-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--crm-line-strong);
+  border-radius: 16px;
+  background: var(--crm-surface-2);
+  text-align: center;
+}
+
+.crm-dropzone {
+  border: 1px dashed transparent;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.crm-dropzone[data-accepts="true"] { border-color: var(--crm-wine-ring); }
+.crm-dropzone[data-over="true"] {
+  border-color: var(--crm-wine);
+  background: var(--crm-wine-tint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crm-fade { animation: none !important; opacity: 1 !important; transform: none !important; }
+}
+.crm-fade { animation: crmFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes crmFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

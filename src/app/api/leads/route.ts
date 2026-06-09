@@ -60,24 +60,36 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "missing_fields" }, { status: 400 });
   }
 
-  const lead = {
-    name,
-    email,
-    phone: str(body.phone),
-    company: str(body.company),
-    service: str(body.service),
-    message: str(body.message),
-    locale: str(body.locale) === "en" ? "en" : "es",
-    source: str(body.source) || "form",
-    sourceUrl: str(body.sourceUrl),
-  };
+  const company = str(body.company);
+  const service = str(body.service);
+  const qualification =
+    company || service
+      ? { ...(company ? { company } : {}), ...(service ? { service } : {}) }
+      : null;
 
   try {
-    await db.insert(leads).values(lead);
+    await db.insert(leads).values({
+      name,
+      email,
+      phone: str(body.phone) || null,
+      message: str(body.message) || null,
+      qualification,
+      locale: str(body.locale) === "en" ? "en" : "es",
+      source: str(body.source) === "bot" ? "bot" : "form",
+      sourceUrl: str(body.sourceUrl) || null,
+    });
   } catch {
     return NextResponse.json({ error: "server_error" }, { status: 500 });
   }
 
-  await notify(lead);
+  await notify({
+    name,
+    email,
+    phone: str(body.phone),
+    company,
+    service,
+    message: str(body.message),
+    locale: str(body.locale) === "en" ? "en" : "es",
+  });
   return NextResponse.json({ ok: true });
 }
