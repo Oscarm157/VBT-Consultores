@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Playfair_Display, IBM_Plex_Mono, Geist } from "next/font/google";
 import "./globals.css";
+
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -41,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${playfair.variable} ${plexMono.variable} antialiased`}
+      className={`${geist.variable} ${inter.variable} ${playfair.variable} ${plexMono.variable} antialiased`}
     >
       <body className="min-h-screen bg-ink text-chalk">{children}</body>
     </html>

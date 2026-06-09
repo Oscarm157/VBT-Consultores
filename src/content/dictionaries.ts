@@ -111,11 +111,16 @@ export const dictionaries = {
     home: {
       hero: {
         eyebrow: "Consultoría · Tijuana, B.C.",
-        title: "Estrategia, cumplimiento",
+        title: "Estrategia, cumplimiento y crecimiento.",
         titleAccent: "y crecimiento.",
         lead: "Firma de consultoría fiscal, financiera y empresarial para empresarios que buscan crecer con control financiero, seguridad fiscal y visión estratégica.",
         ctaPrimary: "Agendar consulta",
         ctaSecondary: "Ver servicios",
+        channels: [
+          { label: "Fiscal", state: "Riesgo en control", tone: "signal" },
+          { label: "Financiera", state: "Con visibilidad", tone: "up" },
+          { label: "Empresarial", state: "Estructura clara", tone: "signal" },
+        ],
       },
       differentiator: {
         eyebrow: "El enfoque",
@@ -321,11 +326,16 @@ export const dictionaries = {
     home: {
       hero: {
         eyebrow: "Advisory · Tijuana, B.C.",
-        title: "Strategy, compliance",
+        title: "Strategy, compliance and growth.",
         titleAccent: "and growth.",
         lead: "A tax, financial and business advisory firm for owners who want to grow with financial control, tax certainty and strategic vision.",
         ctaPrimary: "Book a consultation",
         ctaSecondary: "View services",
+        channels: [
+          { label: "Tax", state: "Risk in control", tone: "signal" },
+          { label: "Financial", state: "With visibility", tone: "up" },
+          { label: "Business", state: "Clear structure", tone: "signal" },
+        ],
       },
       differentiator: {
         eyebrow: "The approach",

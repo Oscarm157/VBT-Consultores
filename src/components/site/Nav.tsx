@@ -126,7 +126,7 @@ export function Nav({
         menu
           ? "border-b border-line bg-ink"
           : scrolled
-            ? "border-b border-white/[0.06] bg-ink/85 backdrop-blur-xl"
+            ? "glass border-b border-white/[0.06]"
             : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -208,8 +208,8 @@ export function Nav({
           >
             <div className="mx-auto grid max-w-[1280px] gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[0.8fr_2fr] lg:gap-16">
               <div className="flex flex-col items-start">
-                <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-bone">
-                  <span aria-hidden className="signal-glow inline-block h-1.5 w-1.5 rounded-full bg-cream" />
+                <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-smoke">
+                  <span aria-hidden className="signal-blue-glow inline-block h-1.5 w-1.5 rounded-full bg-signal" />
                   {dict.services}
                 </span>
                 <h3 className="mt-4 max-w-xs font-serif text-2xl font-normal leading-tight tracking-[-0.02em] text-chalk">
