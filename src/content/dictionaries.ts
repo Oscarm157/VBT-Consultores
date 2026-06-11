@@ -124,7 +124,7 @@ export const dictionaries = {
       },
       differentiator: {
         eyebrow: "El enfoque",
-        title: "No somos un despacho contable.",
+        title: "Consultoría empresarial, más allá de la contabilidad.",
         body: "Somos una firma de consultoría para empresarios. Trabajamos sobre tres frentes que en la práctica no se separan: la carga fiscal, la salud financiera y la estructura de la empresa. El objetivo no es cumplir por cumplir, sino que cada decisión tenga control y respaldo.",
       },
       pillars: {
@@ -177,7 +177,7 @@ export const dictionaries = {
     about: {
       hero: {
         eyebrow: "Nosotros",
-        title: "No somos un despacho contable.",
+        title: "Consultoría empresarial, más allá de la contabilidad.",
         lead: "VBT Consultores es una firma de consultoría fiscal, financiera y empresarial en Tijuana. Trabajamos con empresarios que ya están operando y quieren crecer con control.",
       },
       approach: {
@@ -339,7 +339,7 @@ export const dictionaries = {
       },
       differentiator: {
         eyebrow: "The approach",
-        title: "We are not an accounting practice.",
+        title: "Business consulting, beyond accounting.",
         body: "We are an advisory firm for business owners. We work across three fronts that in practice never split apart: the tax burden, financial health and the structure of the company. The goal is not to comply for the sake of it, but to give every decision control and backing.",
       },
       pillars: {
@@ -392,7 +392,7 @@ export const dictionaries = {
     about: {
       hero: {
         eyebrow: "About",
-        title: "We are not an accounting practice.",
+        title: "Business consulting, beyond accounting.",
         lead: "VBT Consultores is a tax, financial and business advisory firm in Tijuana. We work with owners who are already operating and want to grow with control.",
       },
       approach: {

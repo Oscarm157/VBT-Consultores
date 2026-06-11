@@ -168,7 +168,7 @@ export function HeroReveal({
       </nav>
 
       {/* heading */}
-      <div className="absolute top-[14%] left-0 right-0 flex flex-col items-center text-center px-5 z-50 pointer-events-none">
+      <div className="absolute top-[24%] left-0 right-0 flex flex-col items-center text-center px-5 z-50 pointer-events-none">
         <h1
           className="text-white leading-[0.95]"
           style={{ textShadow: "0 2px 30px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.5)" }}
