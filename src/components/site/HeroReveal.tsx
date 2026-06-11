@@ -140,7 +140,12 @@ export function HeroReveal({
           <svg width="30" height="30" viewBox="0 0 256 256" fill="#ffffff" aria-hidden>
             <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z" />
           </svg>
-          <span className="text-white text-3xl font-serif italic">VBT</span>
+          <span className="flex flex-col leading-none">
+            <span className="text-white text-3xl font-serif italic">VBT</span>
+            <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.34em] text-white/70">
+              Consultores
+            </span>
+          </span>
         </Link>
 
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-2 py-2 items-center gap-1">
@@ -171,7 +176,7 @@ export function HeroReveal({
       <div className="absolute top-[24%] left-0 right-0 flex flex-col items-center text-center px-5 z-50 pointer-events-none">
         <h1
           className="text-white leading-[0.95]"
-          style={{ textShadow: "0 2px 30px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.5)" }}
+          style={{ textShadow: "0 6px 50px rgba(0,0,0,0.9), 0 3px 18px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.7)" }}
         >
           <span
             className="hero-anim hero-reveal block font-serif italic font-normal text-5xl sm:text-7xl md:text-8xl"
