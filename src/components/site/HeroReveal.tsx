@@ -137,12 +137,12 @@ export function HeroReveal({
       {/* nav */}
       <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between p-4 sm:p-5">
         <Link href={`/${lang}/v2`} className="flex items-center gap-2.5">
-          <svg width="40" height="40" viewBox="0 0 256 256" fill="#ffffff" aria-hidden>
+          <svg width="30" height="30" viewBox="0 0 256 256" fill="#ffffff" aria-hidden>
             <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z" />
           </svg>
           <span className="flex flex-col leading-none">
             <span className="text-white text-3xl font-serif italic">VBT</span>
-            <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.3em] text-white/70">
+            <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.3em] text-white/70">
               Consultores
             </span>
           </span>
