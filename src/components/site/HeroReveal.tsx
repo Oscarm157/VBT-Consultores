@@ -185,25 +185,25 @@ export function HeroReveal({
         </h1>
       </div>
 
-      {/* bottom row: ambos parrafos arrancan a la misma altura (items-start) */}
-      <div className="absolute bottom-10 sm:bottom-14 left-5 right-5 md:left-14 md:right-14 z-50 flex items-start justify-between gap-8 pointer-events-none">
+      {/* bottom row: textos hasta abajo (items-end); boton arriba del texto derecho */}
+      <div className="absolute bottom-8 sm:bottom-10 left-5 right-5 md:left-14 md:right-14 z-50 flex items-end justify-between gap-8 pointer-events-none">
         {/* bottom-left */}
         <p className="hero-anim hero-fade hidden sm:block max-w-[260px] text-sm text-white/80 leading-relaxed" style={{ animationDelay: "0.7s" }}>
           {paraLeft}
         </p>
 
-        {/* bottom-right */}
+        {/* bottom-right: boton encima, texto debajo */}
         <div
           className="hero-anim hero-fade w-full sm:w-auto sm:max-w-[260px] flex flex-col items-start gap-4 sm:gap-5"
           style={{ animationDelay: "0.85s" }}
         >
-          <p className="text-xs sm:text-sm text-white/80 leading-relaxed">{paraRight}</p>
           <Link
             href={cta.href}
             className="pointer-events-auto bg-signal hover:bg-signal-dim text-white text-sm font-medium px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-95 hover:shadow-lg hover:shadow-signal/30"
           >
             {cta.label}
           </Link>
+          <p className="text-xs sm:text-sm text-white/80 leading-relaxed">{paraRight}</p>
         </div>
       </div>
     </section>
