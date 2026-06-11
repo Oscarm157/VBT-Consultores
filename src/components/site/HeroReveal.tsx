@@ -185,23 +185,26 @@ export function HeroReveal({
         </h1>
       </div>
 
-      {/* bottom-left */}
-      <div className="hero-anim hero-fade hidden sm:block absolute bottom-14 left-10 md:left-14 max-w-[260px] z-50" style={{ animationDelay: "0.7s" }}>
-        <p className="text-sm text-white/80 leading-relaxed">{paraLeft}</p>
-      </div>
+      {/* bottom row: ambos parrafos arrancan a la misma altura (items-start) */}
+      <div className="absolute bottom-10 sm:bottom-14 left-5 right-5 md:left-14 md:right-14 z-50 flex items-start justify-between gap-8 pointer-events-none">
+        {/* bottom-left */}
+        <p className="hero-anim hero-fade hidden sm:block max-w-[260px] text-sm text-white/80 leading-relaxed" style={{ animationDelay: "0.7s" }}>
+          {paraLeft}
+        </p>
 
-      {/* bottom-right */}
-      <div
-        className="hero-anim hero-fade absolute bottom-10 sm:bottom-24 left-5 right-5 sm:left-auto sm:right-10 md:right-14 max-w-full sm:max-w-[260px] flex flex-col items-start gap-4 sm:gap-5 z-50"
-        style={{ animationDelay: "0.85s" }}
-      >
-        <p className="text-xs sm:text-sm text-white/80 leading-relaxed">{paraRight}</p>
-        <Link
-          href={cta.href}
-          className="bg-signal hover:bg-signal-dim text-white text-sm font-medium px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-95 hover:shadow-lg hover:shadow-signal/30"
+        {/* bottom-right */}
+        <div
+          className="hero-anim hero-fade w-full sm:w-auto sm:max-w-[260px] flex flex-col items-start gap-4 sm:gap-5"
+          style={{ animationDelay: "0.85s" }}
         >
-          {cta.label}
-        </Link>
+          <p className="text-xs sm:text-sm text-white/80 leading-relaxed">{paraRight}</p>
+          <Link
+            href={cta.href}
+            className="pointer-events-auto bg-signal hover:bg-signal-dim text-white text-sm font-medium px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-95 hover:shadow-lg hover:shadow-signal/30"
+          >
+            {cta.label}
+          </Link>
+        </div>
       </div>
     </section>
   );
