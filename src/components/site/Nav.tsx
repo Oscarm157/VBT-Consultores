@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { editorialEase } from "@/lib/motion";
-import { Wordmark } from "./Wordmark";
+import { WordmarkAnimated } from "./WordmarkAnimated";
 import { PillButton } from "./PillButton";
 import type { Locale } from "@/content/dictionaries";
 
@@ -143,7 +143,7 @@ export function Nav({
     >
       <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-5 sm:h-24 sm:px-8">
         <Link href={`/${lang}`} aria-label="VBT Consultores" className="shrink-0">
-          <Wordmark size="md" />
+          <WordmarkAnimated size="md" />
         </Link>
 
         <div className="hidden items-center gap-5 md:flex">

@@ -135,7 +135,7 @@ export const dictionaries = {
       },
       audience: {
         eyebrow: "Para quién",
-        title: "Empresarios que ya están operando.",
+        title: "Empresas que operan y quieren crecer.",
         lead: "Trabajamos con quienes buscan ordenar su operación y crecer con respaldo.",
         items: [
           "Desarrollos inmobiliarios",
@@ -364,7 +364,7 @@ export const dictionaries = {
       },
       audience: {
         eyebrow: "Who we work with",
-        title: "Owners who are already operating.",
+        title: "Companies that operate and want to grow.",
         lead: "We work with those looking to put their operation in order and grow with backing.",
         items: [
           "Real estate developments",

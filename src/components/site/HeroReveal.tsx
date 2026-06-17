@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Wordmark } from "./Wordmark";
+import { WordmarkAnimated } from "./WordmarkAnimated";
 
 const BG_IMAGE_1 = "/v2/base.webp";
 const BG_IMAGE_2 = "/v2/reveal.webp";
@@ -152,7 +152,7 @@ export function HeroReveal({
         }`}
       >
         <Link href={`/${lang}`} aria-label="VBT Consultores">
-          <Wordmark size="md" className="text-white" />
+          <WordmarkAnimated size="md" className="text-white" />
         </Link>
 
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-2 py-2 items-center gap-1">
