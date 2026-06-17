@@ -99,6 +99,15 @@ export function HeroReveal({
   const smooth = useRef({ x: -999, y: -999 });
   const rafRef = useRef<number>(0);
   const [cursorPos, setCursorPos] = useState({ x: -999, y: -999 });
+  const [navHidden, setNavHidden] = useState(false);
+
+  useEffect(() => {
+    // El nav del hero se desvanece al pasar el hero; el Nav global toma el relevo.
+    const onScroll = () => setNavHidden(window.scrollY >= window.innerHeight * 0.72);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
@@ -135,8 +144,13 @@ export function HeroReveal({
       <RevealLayer image={BG_IMAGE_2} cursorX={cursorPos.x} cursorY={cursorPos.y} />
 
       {/* nav */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between p-4 sm:p-5">
-        <Link href={`/${lang}/v2`} className="flex items-center gap-2.5">
+      <nav
+        aria-hidden={navHidden || undefined}
+        className={`fixed top-0 left-0 right-0 z-[100] flex items-center justify-between p-4 transition-opacity duration-300 motion-reduce:transition-none sm:p-5 ${
+          navHidden ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
+      >
+        <Link href={`/${lang}`} className="flex items-center gap-2.5">
           <svg width="30" height="30" viewBox="0 0 256 256" fill="#ffffff" aria-hidden>
             <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z" />
           </svg>
