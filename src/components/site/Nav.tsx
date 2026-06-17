@@ -254,17 +254,15 @@ export function Nav({
                     </Link>
                     <ul className="mt-4 flex flex-col gap-3 pl-6">
                       {s.items.map((it) => (
-                        <li key={it}>
-                          <Link
-                            href={`/${lang}/servicios/${s.slug}`}
-                            className="group flex items-center gap-2 text-[13.5px] leading-snug text-bone/80 transition-colors hover:text-chalk"
-                          >
-                            <span
-                              aria-hidden
-                              className="h-1 w-1 shrink-0 rounded-full bg-bone/50 transition-colors group-hover:bg-cream"
-                            />
-                            {it}
-                          </Link>
+                        <li
+                          key={it}
+                          className="flex items-center gap-2 text-[13.5px] leading-snug text-bone/80"
+                        >
+                          <span
+                            aria-hidden
+                            className="h-1 w-1 shrink-0 rounded-full bg-bone/50"
+                          />
+                          {it}
                         </li>
                       ))}
                     </ul>
