@@ -1,8 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { WordmarkAnimated } from "./WordmarkAnimated";
+
+const POINTER_QUERY = "(hover: hover) and (pointer: fine)";
+function subscribePointer(cb: () => void) {
+  const mq = window.matchMedia(POINTER_QUERY);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
 
 const BG_IMAGE_1 = "/v2/base.webp";
 const BG_IMAGE_2 = "/v2/reveal.webp";
@@ -101,6 +109,13 @@ export function HeroReveal({
   const rafRef = useRef<number>(0);
   const [cursorPos, setCursorPos] = useState({ x: -999, y: -999 });
   const [navHidden, setNavHidden] = useState(false);
+  // El spotlight (RAF + canvas) solo en desktop con puntero fino: en móvil es
+  // puro costo de main-thread sin efecto util y carga una 2ª imagen que no se ve.
+  const revealOn = useSyncExternalStore(
+    subscribePointer,
+    () => window.matchMedia(POINTER_QUERY).matches,
+    () => false,
+  );
 
   useEffect(() => {
     // El nav del hero se desvanece al pasar el hero; el Nav global toma el relevo.
@@ -111,6 +126,7 @@ export function HeroReveal({
   }, []);
 
   useEffect(() => {
+    if (!revealOn) return;
     const onMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
     };
@@ -128,21 +144,29 @@ export function HeroReveal({
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(rafRef.current);
     };
-  }, []);
+  }, [revealOn]);
 
   return (
     <section
       className="relative w-full overflow-hidden h-screen bg-black"
       style={{ height: "100dvh" }}
     >
-      {/* 1 · base image */}
-      <div
-        className="hero-zoom absolute inset-0 bg-center bg-cover bg-no-repeat z-10"
-        style={{ backgroundImage: `url(${BG_IMAGE_1})` }}
-      />
+      {/* 1 · base image (LCP: next/image con priority) */}
+      <div className="hero-zoom absolute inset-0 z-10">
+        <Image
+          src={BG_IMAGE_1}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </div>
 
-      {/* 2 · cursor-revealed image */}
-      <RevealLayer image={BG_IMAGE_2} cursorX={cursorPos.x} cursorY={cursorPos.y} />
+      {/* 2 · cursor-revealed image (solo desktop) */}
+      {revealOn && (
+        <RevealLayer image={BG_IMAGE_2} cursorX={cursorPos.x} cursorY={cursorPos.y} />
+      )}
 
       {/* nav */}
       <nav
