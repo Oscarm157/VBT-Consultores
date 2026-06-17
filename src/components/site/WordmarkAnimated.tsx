@@ -26,16 +26,17 @@ export function WordmarkAnimated({
   const [playKey, setPlayKey] = useState(0);
   const h = HEIGHTS[size];
 
-  // pathLength para el chevron; strokeDashoffset para el texto (pathLength no aplica a <text>).
+  // Trazo apenas insinuado (azul tenue) y relleno que entra pronto: sutil.
+  const PEAK = 0.45; // opacidad máxima del trazo blueprint
   const markTransition = (delay: number) => ({
-    pathLength: { delay, duration: 0.5, ease: editorialEase },
-    fillOpacity: { delay: delay + 0.4, duration: 0.4, ease: editorialEase },
-    strokeOpacity: { delay: delay + 0.55, duration: 0.5, ease: editorialEase },
+    pathLength: { delay, duration: 0.45, ease: editorialEase },
+    fillOpacity: { delay: delay + 0.25, duration: 0.4, ease: editorialEase },
+    strokeOpacity: { delay: delay + 0.4, duration: 0.4, ease: editorialEase },
   });
   const textTransition = (delay: number) => ({
-    strokeDashoffset: { delay, duration: 0.8, ease: editorialEase },
-    fillOpacity: { delay: delay + 0.45, duration: 0.45, ease: editorialEase },
-    strokeOpacity: { delay: delay + 0.7, duration: 0.5, ease: editorialEase },
+    strokeDashoffset: { delay, duration: 0.6, ease: editorialEase },
+    fillOpacity: { delay: delay + 0.28, duration: 0.4, ease: editorialEase },
+    strokeOpacity: { delay: delay + 0.42, duration: 0.4, ease: editorialEase },
   });
 
   return (
@@ -58,10 +59,10 @@ export function WordmarkAnimated({
           transform="translate(1 2) scale(0.1094)"
           fill="currentColor"
           stroke={BLUEPRINT}
-          strokeWidth={1.1}
+          strokeWidth={0.9}
           vectorEffect="non-scaling-stroke"
           strokeLinejoin="round"
-          initial={reduce ? { pathLength: 1, fillOpacity: 1, strokeOpacity: 0 } : { pathLength: 0, fillOpacity: 0, strokeOpacity: 1 }}
+          initial={reduce ? { pathLength: 1, fillOpacity: 1, strokeOpacity: 0 } : { pathLength: 0, fillOpacity: 0, strokeOpacity: PEAK }}
           animate={{ pathLength: 1, fillOpacity: 1, strokeOpacity: 0 }}
           transition={markTransition(0)}
         />
@@ -72,13 +73,13 @@ export function WordmarkAnimated({
           y={21}
           fill="currentColor"
           stroke={BLUEPRINT}
-          strokeWidth={0.8}
+          strokeWidth={0.6}
           vectorEffect="non-scaling-stroke"
           style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontStyle: "italic", fontSize: 22, letterSpacing: "0.2px" }}
           strokeDasharray={240}
-          initial={reduce ? { strokeDashoffset: 0, fillOpacity: 1, strokeOpacity: 0 } : { strokeDashoffset: 240, fillOpacity: 0, strokeOpacity: 1 }}
+          initial={reduce ? { strokeDashoffset: 0, fillOpacity: 1, strokeOpacity: 0 } : { strokeDashoffset: 240, fillOpacity: 0, strokeOpacity: PEAK }}
           animate={{ strokeDashoffset: 0, fillOpacity: 1, strokeOpacity: 0 }}
-          transition={textTransition(0.25)}
+          transition={textTransition(0.12)}
         >
           VBT
         </motion.text>
@@ -90,13 +91,13 @@ export function WordmarkAnimated({
           fill="currentColor"
           fillOpacity={0.7}
           stroke={BLUEPRINT}
-          strokeWidth={0.6}
+          strokeWidth={0.5}
           vectorEffect="non-scaling-stroke"
           style={{ fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: 6.4, fontWeight: 500, letterSpacing: "1.7px" }}
           strokeDasharray={360}
-          initial={reduce ? { strokeDashoffset: 0, fillOpacity: 0.7, strokeOpacity: 0 } : { strokeDashoffset: 360, fillOpacity: 0, strokeOpacity: 1 }}
+          initial={reduce ? { strokeDashoffset: 0, fillOpacity: 0.7, strokeOpacity: 0 } : { strokeDashoffset: 360, fillOpacity: 0, strokeOpacity: PEAK }}
           animate={{ strokeDashoffset: 0, fillOpacity: 0.7, strokeOpacity: 0 }}
-          transition={textTransition(0.5)}
+          transition={textTransition(0.24)}
         >
           CONSULTORES
         </motion.text>
