@@ -1,7 +1,6 @@
 /**
- * Wordmark VBT como texto serif vivo (no el JPEG de referencia).
- * VBT en Playfair display + "Consultores" con tracking, ecoando el logo.
- * El logo limpio final lo entrega Oscar; esto es el placeholder de marca.
+ * Logo VBT: imagotipo (doble chevron) + "VBT" serif itálica + "Consultores" en
+ * versalitas. Mismo lockup que arranca en el hero. Hereda color via currentColor.
  */
 export function Wordmark({
   className = "",
@@ -11,22 +10,28 @@ export function Wordmark({
   size?: "sm" | "md" | "lg";
 }) {
   const scale = {
-    sm: { mark: "text-xl", sub: "text-[8px] tracking-[0.5em]" },
-    md: { mark: "text-2xl", sub: "text-[9px] tracking-[0.55em]" },
-    lg: { mark: "text-4xl", sub: "text-[11px] tracking-[0.6em]" },
+    sm: { mark: 24, brand: "text-xl", sub: "text-[7px] tracking-[0.28em]" },
+    md: { mark: 28, brand: "text-2xl", sub: "text-[8px] tracking-[0.3em]" },
+    lg: { mark: 40, brand: "text-4xl", sub: "text-[10px] tracking-[0.32em]" },
   }[size];
 
   return (
-    <span className={`inline-flex flex-col items-center leading-none ${className}`}>
-      <span
-        className={`font-serif font-medium tracking-[0.14em] text-chalk ${scale.mark}`}
+    <span className={`inline-flex items-center gap-2.5 text-chalk ${className}`}>
+      <svg
+        width={scale.mark}
+        height={scale.mark}
+        viewBox="0 0 256 256"
+        fill="currentColor"
+        aria-hidden
+        className="shrink-0"
       >
-        VBT
-      </span>
-      <span
-        className={`mt-1 font-mono uppercase text-bone/80 ${scale.sub}`}
-      >
-        Consultores
+        <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z" />
+      </svg>
+      <span className="flex flex-col leading-none">
+        <span className={`font-serif italic font-normal ${scale.brand}`}>VBT</span>
+        <span className={`mt-0.5 font-medium uppercase text-bone/70 ${scale.sub}`}>
+          Consultores
+        </span>
       </span>
     </span>
   );

@@ -18,7 +18,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
       <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr_1.1fr]">
           <div className="max-w-sm">
-            <Wordmark size="lg" className="!items-start" />
+            <Wordmark size="lg" />
             <p className="mt-7 text-[15px] leading-relaxed text-bone/90">
               {dict.footer.tagline}
             </p>

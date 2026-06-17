@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { Wordmark } from "./Wordmark";
 
 const BG_IMAGE_1 = "/v2/base.webp";
 const BG_IMAGE_2 = "/v2/reveal.webp";
@@ -150,16 +151,8 @@ export function HeroReveal({
           navHidden ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       >
-        <Link href={`/${lang}`} className="flex items-center gap-2.5">
-          <svg width="30" height="30" viewBox="0 0 256 256" fill="#ffffff" aria-hidden>
-            <path d="M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z" />
-          </svg>
-          <span className="flex flex-col leading-none">
-            <span className="text-white text-3xl font-serif italic">VBT</span>
-            <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.3em] text-white/70">
-              Consultores
-            </span>
-          </span>
+        <Link href={`/${lang}`} aria-label="VBT Consultores">
+          <Wordmark size="md" className="text-white" />
         </Link>
 
         <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-2 py-2 items-center gap-1">

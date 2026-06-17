@@ -161,6 +161,22 @@ export const dictionaries = {
         lead: "Agenda una consulta. Respondemos en un día hábil.",
         button: "Agendar consulta",
       },
+      process: {
+        eyebrow: "El proceso",
+        title: "De diagnóstico a seguimiento.",
+        lead: "Un encargo sigue cuatro pasos. El alcance queda claro antes de comprometer nada.",
+        steps: [
+          { n: "01", name: "Diagnóstico", note: "Revisamos cómo está hoy la empresa en lo fiscal, lo financiero y lo operativo." },
+          { n: "02", name: "Planeación", note: "Definimos la estrategia y las prioridades sobre los tres frentes, con un alcance acordado." },
+          { n: "03", name: "Implementación", note: "Ejecutamos los cambios de estructura, cumplimiento y control, acompañando cada paso." },
+          { n: "04", name: "Seguimiento", note: "Damos continuidad y ajustamos conforme la empresa crece y cambian las condiciones." },
+        ],
+      },
+      closing: {
+        eyebrow: "Contacto",
+        title: "Agenda tu consulta.",
+        lead: "Cuéntanos en qué está tu empresa. Respondemos en un día hábil.",
+      },
     },
     services: { items: servicesEs, cta: "Ver todos los servicios" },
     servicesPage: {
@@ -171,8 +187,6 @@ export const dictionaries = {
       includes: "Lo que incluye",
       others: "Otros servicios",
       backToAll: "Todos los servicios",
-      cta: "Agendar consulta",
-      ctaLead: "Cuéntanos en qué está tu empresa y vemos por dónde empezar.",
     },
     about: {
       hero: {
@@ -376,6 +390,22 @@ export const dictionaries = {
         lead: "Book a consultation. We reply within one business day.",
         button: "Book a consultation",
       },
+      process: {
+        eyebrow: "The process",
+        title: "From diagnosis to follow-up.",
+        lead: "An engagement follows four steps. The scope is clear before committing to anything.",
+        steps: [
+          { n: "01", name: "Diagnosis", note: "We review where the company stands today in tax, finance and operations." },
+          { n: "02", name: "Planning", note: "We define the strategy and priorities across the three fronts, with an agreed scope." },
+          { n: "03", name: "Implementation", note: "We carry out the changes in structure, compliance and control, supporting each step." },
+          { n: "04", name: "Follow-up", note: "We provide continuity and adjust as the company grows and conditions change." },
+        ],
+      },
+      closing: {
+        eyebrow: "Contact",
+        title: "Book your consultation.",
+        lead: "Tell us where your company stands. We reply within one business day.",
+      },
     },
     services: { items: servicesEn, cta: "View all services" },
     servicesPage: {
@@ -386,8 +416,6 @@ export const dictionaries = {
       includes: "What it includes",
       others: "Other services",
       backToAll: "All services",
-      cta: "Book a consultation",
-      ctaLead: "Tell us where your company stands and we'll see where to start.",
     },
     about: {
       hero: {
