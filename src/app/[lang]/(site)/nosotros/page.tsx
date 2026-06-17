@@ -4,6 +4,7 @@ import { getDictionary, isLocale } from "@/content/dictionaries";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { SignalLine } from "@/components/site/SignalLine";
+import { Proceso } from "@/components/site/Proceso";
 import { PillButton } from "@/components/site/PillButton";
 
 export async function generateMetadata({
@@ -123,6 +124,9 @@ export default async function NosotrosPage({
           </div>
         </div>
       </section>
+
+      {/* Proceso */}
+      <Proceso dict={d.home.process} />
 
       {/* CTA */}
       <section className="mx-auto max-w-[1280px] px-5 py-28 sm:px-8 lg:py-36">

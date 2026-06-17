@@ -4,7 +4,8 @@ import { getDictionary, isLocale } from "@/content/dictionaries";
 import { HeroReveal } from "@/components/site/HeroReveal";
 import { FrentesInstrument } from "@/components/site/FrentesInstrument";
 import { Reveal } from "@/components/site/Reveal";
-import { PillButton } from "@/components/site/PillButton";
+import { Proceso } from "@/components/site/Proceso";
+import { ClosingForm } from "@/components/site/ClosingForm";
 
 export async function generateMetadata({
   params,
@@ -140,26 +141,18 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* ===== CTA ===== */}
-      <section className="relative overflow-hidden">
-        <div className="instrument-grid instrument-fade pointer-events-none absolute inset-0 opacity-60" aria-hidden />
-        <div className="relative mx-auto max-w-[1220px] px-5 py-28 sm:px-8 lg:py-36">
-          <Reveal className="flex flex-col items-start gap-8">
-            <h2 className="max-w-3xl font-display text-[clamp(2.3rem,6vw,4.6rem)] font-semibold leading-[1.0] tracking-[-0.04em] text-balance text-chalk">
-              {h.cta.title}
-            </h2>
-            <p className="max-w-md text-[17px] leading-relaxed text-bone">{h.cta.lead}</p>
-            <div className="flex flex-wrap items-center gap-4">
-              <PillButton href={`/${lang}/contacto`} variant="primary" arrow>
-                {h.cta.button}
-              </PillButton>
-              <PillButton href={`/${lang}/servicios`} variant="signal">
-                {h.pillars.cta}
-              </PillButton>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ===== Proceso ===== */}
+      <Proceso dict={h.process} />
+
+      {/* ===== Cierre con form ===== */}
+      <ClosingForm
+        closing={h.closing}
+        labels={d.contactPage}
+        contact={d.contact}
+        form={d.contactPage.form}
+        services={d.services.items}
+        locale={lang}
+      />
     </>
   );
 }

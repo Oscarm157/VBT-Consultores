@@ -5,7 +5,7 @@ import { getDictionary, isLocale, locales } from "@/content/dictionaries";
 import { getService, getServices } from "@/content/services-detail";
 import { Reveal } from "@/components/site/Reveal";
 import { SignalLine } from "@/components/site/SignalLine";
-import { PillButton } from "@/components/site/PillButton";
+import { ClosingForm } from "@/components/site/ClosingForm";
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>
@@ -94,7 +94,7 @@ export default async function ServicioDetailPage({
       </section>
 
       {/* Otros servicios */}
-      <section className="border-t border-line bg-surface-1/40">
+      <section className="border-y border-line bg-surface-1/40">
         <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8">
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-bone">
             {sp.others}
@@ -122,20 +122,15 @@ export default async function ServicioDetailPage({
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-[1280px] px-5 py-28 sm:px-8 lg:py-36">
-        <Reveal className="flex flex-col items-start gap-7">
-          <h2 className="max-w-2xl font-serif text-[clamp(2rem,5vw,3.6rem)] font-normal leading-[1.04] tracking-[-0.02em] text-chalk">
-            {d.home.cta.title}
-          </h2>
-          <p className="max-w-md text-[17px] leading-relaxed text-bone/90">
-            {sp.ctaLead}
-          </p>
-          <PillButton href={`/${lang}/contacto`} variant="primary" arrow>
-            {sp.cta}
-          </PillButton>
-        </Reveal>
-      </section>
+      {/* Cierre con form */}
+      <ClosingForm
+        closing={d.home.closing}
+        labels={d.contactPage}
+        contact={d.contact}
+        form={d.contactPage.form}
+        services={d.services.items}
+        locale={lang}
+      />
     </>
   );
 }

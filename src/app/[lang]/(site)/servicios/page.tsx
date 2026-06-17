@@ -5,7 +5,8 @@ import { getDictionary, isLocale } from "@/content/dictionaries";
 import { getServices } from "@/content/services-detail";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import { PillButton } from "@/components/site/PillButton";
+import { Proceso } from "@/components/site/Proceso";
+import { ClosingForm } from "@/components/site/ClosingForm";
 
 export async function generateMetadata({
   params,
@@ -87,20 +88,20 @@ export default async function ServiciosPage({
         </ul>
       </section>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-[1280px] px-5 py-28 sm:px-8 lg:py-36">
-        <Reveal className="flex flex-col items-start gap-7">
-          <h2 className="max-w-2xl font-serif text-[clamp(2rem,5vw,3.6rem)] font-normal leading-[1.04] tracking-[-0.02em] text-chalk">
-            {d.home.cta.title}
-          </h2>
-          <p className="max-w-md text-[17px] leading-relaxed text-bone/90">
-            {sp.ctaLead}
-          </p>
-          <PillButton href={`/${lang}/contacto`} variant="primary" arrow>
-            {sp.cta}
-          </PillButton>
-        </Reveal>
-      </section>
+      {/* Proceso */}
+      <div className="mt-8">
+        <Proceso dict={d.home.process} />
+      </div>
+
+      {/* Cierre con form */}
+      <ClosingForm
+        closing={d.home.closing}
+        labels={d.contactPage}
+        contact={d.contact}
+        form={d.contactPage.form}
+        services={d.services.items}
+        locale={lang}
+      />
     </>
   );
 }
