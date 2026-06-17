@@ -22,7 +22,7 @@ type ServiceOption = { slug: string; name: string };
 
 const field =
   "w-full rounded-lg border border-line bg-surface-2/60 px-4 py-3 text-[15px] text-chalk placeholder:text-ash outline-none transition-colors focus:border-chalk/40";
-const label = "mb-2 block font-mono text-[11px] uppercase tracking-[0.16em] text-smoke";
+const label = "mb-2 block font-mono text-[11px] uppercase tracking-[0.16em] text-bone";
 
 export function ContactForm({
   dict,
