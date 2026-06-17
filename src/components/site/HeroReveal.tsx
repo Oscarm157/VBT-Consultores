@@ -210,14 +210,14 @@ export function HeroReveal({
           style={{ textShadow: "0 6px 50px rgba(0,0,0,0.9), 0 3px 18px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.7)" }}
         >
           <span
-            className="hero-anim hero-reveal block font-serif italic font-normal text-5xl sm:text-7xl md:text-8xl"
-            style={{ letterSpacing: "-0.04em", animationDelay: "0.25s" }}
+            className="hero-title block font-serif italic font-normal text-5xl sm:text-7xl md:text-8xl"
+            style={{ letterSpacing: "-0.04em" }}
           >
             {title1}
           </span>
           <span
-            className="hero-anim hero-reveal block font-sans font-normal text-5xl sm:text-7xl md:text-8xl -mt-1"
-            style={{ letterSpacing: "-0.06em", animationDelay: "0.42s" }}
+            className="hero-title block font-sans font-normal text-5xl sm:text-7xl md:text-8xl -mt-1"
+            style={{ letterSpacing: "-0.06em", animationDelay: "0.07s" }}
           >
             {title2}
           </span>
