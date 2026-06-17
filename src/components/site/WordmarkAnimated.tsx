@@ -5,11 +5,15 @@ import { motion, useReducedMotion } from "motion/react";
 import { editorialEase } from "@/lib/motion";
 
 const MARK_PATH = "M 256 256 L 128 256 L 0 128 L 128 128 Z M 256 128 L 128 128 L 0 0 L 128 0 Z";
+// Línea del trazo blueprint: azul señal que dibuja el contorno y se atenúa al rellenar.
+const BLUEPRINT = "var(--color-signal)";
+
+const HEIGHTS = { sm: 24, md: 30, lg: 44 } as const;
 
 /**
- * Variante animada del logo: el imagotipo (chevron) se dibuja trazo a trazo al
- * montar y se re-dibuja al hover. Misma lockup que Wordmark. Para hero y nav;
- * el Wordmark estático sigue en Footer/404.
+ * Logo blueprint: el imagotipo y las letras "VBT Consultores" se dibujan trazo a
+ * trazo (líneas azul señal) y luego se rellenan en blanco, escalonado. Se re-dibuja
+ * al hover. Todo en un SVG. El Wordmark estático sigue en Footer/404.
  */
 export function WordmarkAnimated({
   className = "",
@@ -20,46 +24,83 @@ export function WordmarkAnimated({
 }) {
   const reduce = useReducedMotion();
   const [playKey, setPlayKey] = useState(0);
+  const h = HEIGHTS[size];
 
-  const scale = {
-    sm: { mark: 24, brand: "text-xl", sub: "text-[7px] tracking-[0.28em]" },
-    md: { mark: 28, brand: "text-2xl", sub: "text-[8px] tracking-[0.3em]" },
-    lg: { mark: 40, brand: "text-4xl", sub: "text-[10px] tracking-[0.32em]" },
-  }[size];
+  // pathLength para el chevron; strokeDashoffset para el texto (pathLength no aplica a <text>).
+  const markTransition = (delay: number) => ({
+    pathLength: { delay, duration: 0.5, ease: editorialEase },
+    fillOpacity: { delay: delay + 0.4, duration: 0.4, ease: editorialEase },
+    strokeOpacity: { delay: delay + 0.55, duration: 0.5, ease: editorialEase },
+  });
+  const textTransition = (delay: number) => ({
+    strokeDashoffset: { delay, duration: 0.8, ease: editorialEase },
+    fillOpacity: { delay: delay + 0.45, duration: 0.45, ease: editorialEase },
+    strokeOpacity: { delay: delay + 0.7, duration: 0.5, ease: editorialEase },
+  });
 
   return (
     <span
-      className={`inline-flex items-center gap-2.5 text-chalk ${className}`}
+      className={`inline-flex text-chalk ${className}`}
       onMouseEnter={() => !reduce && setPlayKey((k) => k + 1)}
     >
       <svg
-        width={scale.mark}
-        height={scale.mark}
-        viewBox="0 0 256 256"
-        aria-hidden
-        className="shrink-0 overflow-visible"
+        key={playKey}
+        viewBox="0 0 152 32"
+        height={h}
+        width={(152 / 32) * h}
+        aria-label="VBT Consultores"
+        role="img"
+        className="overflow-visible"
       >
+        {/* imagotipo */}
         <motion.path
-          key={playKey}
           d={MARK_PATH}
+          transform="translate(1 2) scale(0.1094)"
           fill="currentColor"
-          stroke="currentColor"
-          strokeWidth={2}
+          stroke={BLUEPRINT}
+          strokeWidth={1.1}
           vectorEffect="non-scaling-stroke"
-          initial={reduce ? { pathLength: 1, fillOpacity: 1 } : { pathLength: 0, fillOpacity: 0 }}
-          animate={{ pathLength: 1, fillOpacity: 1 }}
-          transition={{
-            pathLength: { duration: 0.9, ease: editorialEase },
-            fillOpacity: { delay: 0.45, duration: 0.45, ease: editorialEase },
-          }}
+          strokeLinejoin="round"
+          initial={reduce ? { pathLength: 1, fillOpacity: 1, strokeOpacity: 0 } : { pathLength: 0, fillOpacity: 0, strokeOpacity: 1 }}
+          animate={{ pathLength: 1, fillOpacity: 1, strokeOpacity: 0 }}
+          transition={markTransition(0)}
         />
+
+        {/* VBT (serif itálica) */}
+        <motion.text
+          x={40}
+          y={21}
+          fill="currentColor"
+          stroke={BLUEPRINT}
+          strokeWidth={0.8}
+          vectorEffect="non-scaling-stroke"
+          style={{ fontFamily: "var(--font-playfair), Georgia, serif", fontStyle: "italic", fontSize: 22, letterSpacing: "0.2px" }}
+          strokeDasharray={240}
+          initial={reduce ? { strokeDashoffset: 0, fillOpacity: 1, strokeOpacity: 0 } : { strokeDashoffset: 240, fillOpacity: 0, strokeOpacity: 1 }}
+          animate={{ strokeDashoffset: 0, fillOpacity: 1, strokeOpacity: 0 }}
+          transition={textTransition(0.25)}
+        >
+          VBT
+        </motion.text>
+
+        {/* Consultores (versalitas) */}
+        <motion.text
+          x={41}
+          y={29}
+          fill="currentColor"
+          fillOpacity={0.7}
+          stroke={BLUEPRINT}
+          strokeWidth={0.6}
+          vectorEffect="non-scaling-stroke"
+          style={{ fontFamily: "var(--font-inter), system-ui, sans-serif", fontSize: 6.4, fontWeight: 500, letterSpacing: "1.7px" }}
+          strokeDasharray={360}
+          initial={reduce ? { strokeDashoffset: 0, fillOpacity: 0.7, strokeOpacity: 0 } : { strokeDashoffset: 360, fillOpacity: 0, strokeOpacity: 1 }}
+          animate={{ strokeDashoffset: 0, fillOpacity: 0.7, strokeOpacity: 0 }}
+          transition={textTransition(0.5)}
+        >
+          CONSULTORES
+        </motion.text>
       </svg>
-      <span className="flex flex-col leading-none">
-        <span className={`font-serif italic font-normal ${scale.brand}`}>VBT</span>
-        <span className={`mt-0.5 font-medium uppercase text-bone/70 ${scale.sub}`}>
-          Consultores
-        </span>
-      </span>
     </span>
   );
 }
