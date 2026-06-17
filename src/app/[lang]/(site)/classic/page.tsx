@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale } from "@/content/dictionaries";
-import { HeroReveal } from "@/components/site/HeroReveal";
+import { HeroKinetic } from "@/components/site/HeroKinetic";
 import { FrentesInstrument } from "@/components/site/FrentesInstrument";
 import { Reveal } from "@/components/site/Reveal";
 import { PillButton } from "@/components/site/PillButton";
@@ -15,12 +15,13 @@ export async function generateMetadata({
   if (!isLocale(lang)) return {};
   const d = getDictionary(lang);
   return {
-    title: { absolute: "VBT Consultores · v2" },
+    title: { absolute: "VBT Consultores" },
     description: d.home.hero.lead,
+    robots: { index: false, follow: false },
   };
 }
 
-export default async function HomeV2({
+export default async function ClassicHomePage({
   params,
 }: {
   params: Promise<{ lang: string }>;
@@ -29,24 +30,18 @@ export default async function HomeV2({
   if (!isLocale(lang)) notFound();
   const d = getDictionary(lang);
   const h = d.home;
-  const title1 = h.hero.title.replace(h.hero.titleAccent, "").trim();
 
   return (
     <>
-      <HeroReveal
-        lang={lang}
-        title1={title1}
-        title2={h.hero.titleAccent}
-        paraLeft={h.pillars.lead}
-        paraRight={h.audience.lead}
-        cta={{ label: h.hero.ctaPrimary, href: `/${lang}/contacto` }}
-        navLinks={[
-          { label: d.nav.services, href: `/${lang}/servicios` },
-          { label: d.nav.about, href: `/${lang}/nosotros` },
-          { label: d.nav.resources, href: `/${lang}/recursos` },
-          { label: d.nav.faq, href: `/${lang}/faq` },
-        ]}
-        navCta={{ label: d.nav.contact, href: `/${lang}/contacto` }}
+      <HeroKinetic
+        eyebrow={h.hero.eyebrow}
+        title={h.hero.title}
+        lead={h.hero.lead}
+        ctaPrimary={h.hero.ctaPrimary}
+        ctaSecondary={h.hero.ctaSecondary}
+        primaryHref={`/${lang}/contacto`}
+        secondaryHref={`/${lang}/servicios`}
+        channels={h.hero.channels}
       />
 
       {/* ===== Diferenciador ===== */}

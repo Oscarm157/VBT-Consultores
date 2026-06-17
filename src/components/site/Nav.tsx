@@ -65,8 +65,13 @@ export function Nav({
   const pathname = usePathname();
   const reduce = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [open, setOpen] = useState(false); // mobile
   const [menu, setMenu] = useState(false); // services dropdown
+
+  // En la home el hero trae su propio nav: el Nav global se oculta sobre el hero
+  // y entra (sólido) al pasar el umbral, mismo punto donde el nav del hero se desvanece.
+  const isHome = pathname === `/${lang}`;
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Cierra menús al cambiar de ruta (reset en render, no en efecto).
@@ -78,7 +83,10 @@ export function Nav({
   }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      setPastHero(window.scrollY >= window.innerHeight * 0.72);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -122,7 +130,10 @@ export function Nav({
   return (
     <header
       onMouseLeave={scheduleClose}
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+      aria-hidden={isHome && !pastHero ? true : undefined}
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,opacity] duration-300 motion-reduce:transition-none ${
+        isHome && !pastHero ? "pointer-events-none opacity-0" : "opacity-100"
+      } ${
         menu
           ? "border-b border-line bg-ink"
           : scrolled
